@@ -19,8 +19,6 @@ dnf5 install -y \
     automake \
     autoconf \
     ncurses-devel \
-    wxGTK-devel \
-    wxBase \
     openssl-devel \
     java-21-openjdk-devel \
     libiodbc \
@@ -29,5 +27,11 @@ dnf5 install -y \
     libxslt \
     fop \
     inotify-tools
+
+# Bazzite excludes mesa-libGLU-devel by default; disable excludes so wx deps resolve.
+dnf5 --setopt=disable_excludes=* install -y \
+    mesa-libGLU-devel \
+    wxGTK-devel \
+    wxBase
 
 echo "::endgroup::"
