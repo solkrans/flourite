@@ -1,9 +1,9 @@
 ###############################################################################
 # PROJECT NAME CONFIGURATION
 ###############################################################################
-# Name: bluenebula
+# Name: flourite
 #
-# IMPORTANT: This name has been set to "bluenebula" (matching the repository name).
+# IMPORTANT: This name has been set to "flourite" (matching the repository name).
 # This name should be used consistently throughout the repository in:
 #   - Justfile: export image_name := env("IMAGE_NAME", "your-name-here")
 #   - README.md: # your-name-here (title)

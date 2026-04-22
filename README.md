@@ -1,4 +1,4 @@
-# bluenebula
+# flourite
 
 A template for building custom bootc operating system images based on the lessons from [Universal Blue](https://universal-blue.org/) and [Bluefin](https://projectbluefin.io). It is designed to be used manually, but is optimized to be bootstraped by GitHub Copilot. After set up you'll have your own custom Linux. 
 
@@ -68,14 +68,14 @@ Click "Use this template" to create a new repository from this template.
 
 ### 2. Rename the Project
 
-This repository is already named `bluenebula`. The following files have been updated to use this name:
+This repository is already named `flourite`. The following files have been updated to use this name:
 
-1. `Containerfile` (line 4): `# Name: bluenebula`
-2. `Justfile` (line 1): `export image_name := env("IMAGE_NAME", "bluenebula")`
-3. `README.md` (line 1): `# bluenebula`
-4. `artifacthub-repo.yml` (line 5): `repositoryID: bluenebula`
-5. `custom/ujust/README.md` (~line 175): `localhost/bluenebula:stable`
-6. `.github/workflows/clean.yml` (line 23): `packages: bluenebula`
+1. `Containerfile` (line 4): `# Name: flourite`
+2. `Justfile` (line 1): `export image_name := env("IMAGE_NAME", "flourite")`
+3. `README.md` (line 1): `# flourite`
+4. `artifacthub-repo.yml` (line 5): `repositoryID: flourite`
+5. `custom/ujust/README.md` (~line 175): `localhost/flourite:stable`
+6. `.github/workflows/clean.yml` (line 23): `packages: flourite`
 
 ### 3. Enable GitHub Actions
 
@@ -119,7 +119,7 @@ All changes should be made via pull requests:
 
 Switch to your image:
 ```bash
-sudo bootc switch ghcr.io/solkrans/bluenebula:stable
+sudo bootc switch ghcr.io/solkrans/flourite:stable
 sudo systemctl reboot
 ```
 
@@ -264,7 +264,7 @@ Your workflow will:
 
 Users can verify your images with:
 ```bash
-cosign verify --key cosign.pub ghcr.io/solkrans/bluenebula:stable
+cosign verify --key cosign.pub ghcr.io/solkrans/flourite:stable
 ```
 
 ## Detailed Guides

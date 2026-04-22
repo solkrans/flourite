@@ -59,14 +59,14 @@ systemctl enable podman.socket
 
 echo "::endgroup::"
 
-echo "::group:: Apply bluenebula Branding"
+echo "::group:: Apply flourite Branding"
 
 if [[ -f /usr/lib/os-release ]]; then
     sed -i \
-        -e 's/^NAME=.*/NAME="bluenebula"/' \
-        -e 's/^ID=.*/ID=bluenebula/' \
-        -e 's/^PRETTY_NAME=.*/PRETTY_NAME="bluenebula"/' \
-        -e 's/^DEFAULT_HOSTNAME=.*/DEFAULT_HOSTNAME=bluenebula/' \
+        -e 's/^NAME=.*/NAME="flourite"/' \
+        -e 's/^ID=.*/ID=flourite/' \
+        -e 's/^PRETTY_NAME=.*/PRETTY_NAME="flourite"/' \
+        -e 's/^DEFAULT_HOSTNAME=.*/DEFAULT_HOSTNAME=flourite/' \
         /usr/lib/os-release
 fi
 

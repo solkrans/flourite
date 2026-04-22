@@ -3,7 +3,7 @@
 ## Initial Setup
 
 ### 1. Rename Template
-- [x] Updated `bluenebula` in: Containerfile, Justfile, README.md, artifacthub-repo.yml
+- [x] Updated `flourite` in: Containerfile, Justfile, README.md, artifacthub-repo.yml
 
 ### 2. Enable GitHub Actions
 - [ ] Settings → Actions → General → Enable workflows
@@ -18,7 +18,7 @@ git push origin main
 
 ### 4. Deploy
 ```bash
-sudo bootc switch --transport registry ghcr.io/solkrans/bluenebula:stable
+sudo bootc switch --transport registry ghcr.io/solkrans/flourite:stable
 sudo systemctl reboot
 ```
 
@@ -30,4 +30,3 @@ cosign generate-key-pair
 # Add cosign.key to GitHub Secrets as SIGNING_SECRET
 # Uncomment signing in .github/workflows/build.yml
 ```
-
