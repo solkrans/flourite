@@ -12,6 +12,11 @@ echo "::group:: Install Rust Toolchain"
 
 dnf5 install -y \
     rust \
-    cargo
+    cargo \
+    libX11-devel \
+    alsa-lib-devel \
+    systemd-devel \
+    wayland-devel \
+    libxkbcommon-devel
 
 echo "::endgroup::"
