@@ -20,7 +20,7 @@ dnf5 install -y \
     autoconf \
     ncurses-devel \
     openssl-devel \
-    java-21-openjdk-devel \
+    java-latest-openjdk-devel \
     libiodbc \
     unixODBC-devel \
     erlang-odbc \
