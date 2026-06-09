@@ -16,13 +16,13 @@ source /ctx/build/copr-helpers.sh
 # Enable nullglob for all glob operations to prevent failures on empty matches
 shopt -s nullglob
 
-echo "::group:: Copy Bluefin Config from Common"
+echo "::group:: Prepare ujust Files"
 
-# Copy just files from @projectbluefin/common (includes 00-entry.just which imports 60-custom.just)
+# Ensure custom just destination exists. Base image provides standard ujust files.
 mkdir -p /usr/share/ublue-os/just/
-shopt -s nullglob
-cp -r /ctx/oci/common/bluefin/usr/share/ublue-os/just/* /usr/share/ublue-os/just/
-shopt -u nullglob
+
+# Recreate custom just file on each build so content is deterministic.
+: > /usr/share/ublue-os/just/60-custom.just
 
 echo "::endgroup::"
 
@@ -34,6 +34,17 @@ cp /ctx/custom/brew/*.Brewfile /usr/share/ublue-os/homebrew/
 
 # Consolidate Just Files
 find /ctx/custom/ujust -iname '*.just' -exec printf "\n\n" \; -exec cat {} \; >> /usr/share/ublue-os/just/60-custom.just
+
+# Ensure custom just file is imported by ujust entrypoint.
+if [[ -f /usr/share/ublue-os/just/00-entry.just ]]; then
+    if ! grep -q '60-custom\.just' /usr/share/ublue-os/just/00-entry.just; then
+        printf '\nimport "60-custom.just"\n' >> /usr/share/ublue-os/just/00-entry.just
+    fi
+else
+    cat > /usr/share/ublue-os/just/00-entry.just << 'EOF'
+import "60-custom.just"
+EOF
+fi
 
 # Copy Flatpak preinstall files
 mkdir -p /etc/flatpak/preinstall.d/

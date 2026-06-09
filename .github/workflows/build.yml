@@ -105,8 +105,9 @@ jobs:
           sep-tags: " "
           sep-annotations: " "
 
-      - name: Build Image
-        id: build_image
+      - name: Build Image (attempt 1)
+        id: build_image_primary
+        continue-on-error: true
         uses: redhat-actions/buildah-build@7a95fa7ee0f02d552a32753e7414641a04307056 # v2
         with:
           containerfiles: |
@@ -117,6 +118,24 @@ jobs:
           tags: ${{ env.DEFAULT_TAG }}
           labels: ${{ steps.metadata.outputs.labels }}
           oci: false
+
+      - name: Build Image (attempt 2)
+        id: build_image_retry
+        if: steps.build_image_primary.outcome == 'failure'
+        uses: redhat-actions/buildah-build@7a95fa7ee0f02d552a32753e7414641a04307056 # v2
+        with:
+          containerfiles: |
+            ./Containerfile
+          image: ${{ env.IMAGE_NAME }}
+          tags: ${{ env.DEFAULT_TAG }}
+          labels: ${{ steps.metadata.outputs.labels }}
+          oci: false
+
+      - name: Verify Build Succeeded
+        if: steps.build_image_primary.outcome == 'failure' && steps.build_image_retry.outcome == 'failure'
+        run: |
+          echo "Build failed on both attempts."
+          exit 1
 
       # Tag for registry
       - name: Tag for registry
